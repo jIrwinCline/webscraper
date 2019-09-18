@@ -1,11 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
 
-with open('index.html') as html_file:
-    soup = BeautifulSoup(html_file, 'lxml')
+s = requests.Session()
 
-for match in soup.find_all('li', class_='favorites'):
-    print(match)
+s.get("http://dpsstnet.state.or.us/IRIS_PublicInquiry/PrivateSecurity/smsGoPerson.aspx")
 
-    headline = match.text
-    print(headline) 
+r = s.get("http://dpsstnet.state.or.us/IRIS_PublicInquiry/PrivateSecurity/SMSGoPersonLkp.aspx?LkpBy=ID&LkpVal=0").text
+
+print(r)
+
+# soup = BeautifulSoup(source, 'lxml')
