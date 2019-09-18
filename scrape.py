@@ -7,6 +7,13 @@ s.get("http://dpsstnet.state.or.us/IRIS_PublicInquiry/PrivateSecurity/smsGoPerso
 
 r = s.get("http://dpsstnet.state.or.us/IRIS_PublicInquiry/PrivateSecurity/SMSGoPersonLkp.aspx?LkpBy=ID&LkpVal=0").text
 
-print(r)
+soup = BeautifulSoup(r, 'lxml')
+
+
+
+tableInfo = soup.find('tr')
+
+print(tableInfo.prettify())
+
 
 # soup = BeautifulSoup(source, 'lxml')
