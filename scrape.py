@@ -12,6 +12,8 @@ soup = BeautifulSoup(r, 'lxml')
 
 
 for tableInfo in soup.find_all('font'):
-    if tableInfo.find_all('a'):
+    try:
         print(tableInfo.a.text)
+    except:
+        pass
 # officer = tableInfo.td.font.a.text
