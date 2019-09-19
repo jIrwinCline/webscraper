@@ -10,20 +10,30 @@ driver.get("http://dpsstnet.state.or.us/IRIS_PublicInquiry/PrivateSecurity/SMSGo
 
 #CLICK NAME
 
-driver.find_element_by_xpath("""//*[@id="DataGridAgcyEmp"]/tbody/tr[2]/td[1]/font/a""").click()
+names = driver.find_elements_by_tag_name("a")
+print(names[0].text)
 
-# find info
-infos = driver.find_elements_by_tag_name("font")
 
-for infos in infos:
-    try:
-        print(infos.text)
-    except:
-        pass
+counter = 0
+for names in names:
+    counter = counter + 1
+    if (counter > 3):
+        print("clicked on", names)
+        names.click()
 
-# GO BACK
+        # find info
+        infos = driver.find_elements_by_tag_name("font")
 
-# driver.execute_script("window.history.go(-1)")
+        for infos in infos:
+            try:
+                print(infos.text)
+            except:
+                pass
+        driver.execute_script("window.history.go(-1)")
+        counter = 0
+
+    # GO BACK
+
 
 # r.find_element_by_xpath("""//*[@id="DataGridAgcyEmp"]/tbody/tr[52]/td/font/b/a""").click()
 
